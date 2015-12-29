@@ -1,19 +1,93 @@
 <head>
-  <title>DF Product Information Database</title>
+  <title>dF Product Information Database</title>
 </head>
 
 <body>
- 
+
 </body>
 
 <template name="ApplicationLayout">
-
+  {{> yield "navbar" }}
+  {{> yield "main" }}
 </template>
 
 <template name="navbar">
-
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">dF</a>
+      </div>
+      <div class="navbar-left">
+        <ul>
+          <li><a href="/additem">Add</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+      <div class="navbar-right navbar-text">
+        {{> loginButtons align="right" }}
+      </div>
+    </div>
+  </nav>
 </template>
 
-<template name="main">
+<template name="home">
+  <div class="container">
+    <h2>Product Information Database</h2>
+    {{> ingr_search }}
+    <hr>
+    {{> product_list}}
+  </div>
+</template>
 
+<template name="ingr_search">
+  <form class="js-search-ingr-form">
+    <input type="text" name="searchbox" class="form-control js-search-ingr" size="20" placeholder="Search for ingredient...">
+  </form>
+</template>
+
+<template name="product_list">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Brand Name</th>
+        <th>Manufacturer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products }}
+        {{> product_item}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="product_item">
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{brandName}}</td>
+    <td>{{manufacturer}}</td>
+  </tr>
+</template>
+
+<template name="add_item">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li>Add item</li>
+  </ol>
+  <div class="container">
+    <h2>Add new product</h2>
+    <p>...</p>
+  </div> <!-- container -->
+</template>
+
+<template name="about">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li>About</li>
+  </ol>
+  <div class="container">
+    <h2>About</h2>
+    <p>...</p>
+    </div>
 </template>
