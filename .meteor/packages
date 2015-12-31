@@ -22,3 +22,4 @@ twbs:bootstrap
 iron:router
 accounts-password
 ian:accounts-ui-bootstrap-3
+sergeyt:typeahead

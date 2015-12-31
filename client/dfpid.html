@@ -15,14 +15,18 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
         <a class="navbar-brand" href="/">dF</a>
       </div>
-      <div class="navbar-left">
-        <ul>
+        <ul class="nav navbar-nav">
           <li><a href="/additem">Add</a></li>
           <li><a href="/about">About</a></li>
         </ul>
-      </div>
       <div class="navbar-right navbar-text">
         {{> loginButtons align="right" }}
       </div>
@@ -41,7 +45,7 @@
 
 <template name="ingr_search">
   <form class="js-search-ingr-form">
-    <input type="text" name="searchbox" class="form-control js-search-ingr" size="20" placeholder="Search for ingredient...">
+   <input type="text" name="searchbox" class="form-control typeahead js-search-ingr" placeholder="Search for ingredient..." autocomplete="off" spellcheck="off" data-source="ingr">
   </form>
 </template>
 

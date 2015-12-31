@@ -48,6 +48,20 @@ Template.product_list.helpers({
     return Products.find(findParam, {sort: {productName: -1}});
   }
 });
+
+Template.ingr_search.rendered = function() {
+  Meteor.typeahead.inject();
+}
+
+Template.ingr_search.helpers({
+  ingr: function() {
+    console.log("In ingr_search.helpers function");
+    return Ingredients.find().fetch().map(function(it) {
+      return it.name;
+    });
+  }
+});
+
 // Template events
 Template.ingr_search.events({
   "submit .js-search-ingr-form": function(ev) {
@@ -57,3 +71,5 @@ Template.ingr_search.events({
     Session.set('listingIngr', {"ingredients": search_text});
   }
 });
+
+

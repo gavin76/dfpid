@@ -72,4 +72,26 @@ Meteor.startup(function() {
 		});
 
 	}
+
+	if (!Ingredients.findOne()) {
+		console.log("No ingredients yet. Creating starter data");
+
+		Products.find().forEach( function(product) {
+			console.log("Processing: " + product.productName);
+			addIngredient(product);
+		});
+
+	}
 });
+
+var addIngredient = function(product) {
+	var ingrList = product.ingredients;
+	for (var i = 0; i < ingrList.length; i ++) {
+		if (!Ingredients.findOne({"name": ingrList[i]})) {
+			Ingredients.insert({
+				name: ingrList[i]
+			})
+		console.log(ingrList[i] + " added to Ingredients");
+		} else { console.log(ingrList[i] + " is already in Ingredients")}
+	}
+}
