@@ -55,7 +55,6 @@ Template.ingr_search.rendered = function() {
 
 Template.ingr_search.helpers({
   ingr: function() {
-    console.log("In ingr_search.helpers function");
     return Ingredients.find().fetch().map(function(it) {
       return it.name;
     });
@@ -64,11 +63,12 @@ Template.ingr_search.helpers({
 
 // Template events
 Template.ingr_search.events({
-  "submit .js-search-ingr-form": function(ev) {
+  "click #js-ingr-submit": function(ev) {
     ev.preventDefault();
-    var search_text = $('.js-search-ingr').val().toLowerCase();
+    var search_text = $('#js-search-ingr').val().toLowerCase();
     console.log('Search for: ' + search_text);
     Session.set('listingIngr', {"ingredients": search_text});
+    return false;
   }
 });
 
