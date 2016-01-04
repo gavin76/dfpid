@@ -1,3 +1,6 @@
+Meteor.subscribe("ingredients");
+Meteor.subscribe("products");
+
 // Session declaration
 Session.set("listingIngr", "");
 
@@ -11,16 +14,7 @@ Router.route('/', function() {
   this.render('navbar', {
     to: "navbar"
   });
-  this.render('home', {
-    to: "main"
-  });
-});
-
-Router.route('/additem', function() {
-  this.render('navbar', {
-    to: "navbar"
-  });
-  this.render('add_item', function() {
+  this.render('ingrsearch', {
     to: "main"
   });
 });
@@ -33,6 +27,35 @@ Router.route('/about', function() {
     to: "main"
   });
 });
+
+Router.route('/ingrsearch', function() {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('ingrsearch', {
+    to: "main"
+  });
+});
+
+Router.route('/prodsearch', function() {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('prodsearch', {
+    to: "main"
+  });
+})
+
+Router.route('/addproduct', function() {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('addProduct', function() {
+    to: "main"
+  });
+});
+
+
 
 // Accounts configuration
 
