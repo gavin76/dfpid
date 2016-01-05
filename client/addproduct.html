@@ -4,7 +4,26 @@
     <li>Add product</li>
   </ol>
   <div class="container">
-    <h2>Add new product</h2>
-    <p>...</p>
+    <!-- {{> quickForm collection="Products" id="addProductFrom" type="insert" }} -->
+    {{> addProductForm }}
+
   </div> <!-- container -->
+</template>
+
+<template name="addProductForm">
+	{{#autoForm collection="Products" id="addProductForm" type="insert" }}
+		<fieldset>
+			<legend>Add a Product</legend>
+			{{> afQuickField name='category'}}
+			{{> afQuickField name='subtype'}}
+			{{> afQuickField name='brandName'}}
+			{{> afQuickField name='productName'}}
+			{{> afQuickField name='manufacturer'}}
+			{{> afQuickField name='country'}}
+			{{> afQuickField name='productId'}}
+			{{> afQuickField name='source'}}
+			{{> afQuickField name='ingredients'}}
+		</fieldset>
+		<button type="submit" class="btn btn-primary">Add</button>
+	{{/autoForm}}
 </template>

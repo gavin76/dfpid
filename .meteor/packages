@@ -21,3 +21,5 @@ iron:router
 accounts-password
 ian:accounts-ui-bootstrap-3
 sergeyt:typeahead
+aldeed:autoform
+aldeed:collection2

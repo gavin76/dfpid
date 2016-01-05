@@ -16,28 +16,3 @@
    <input type="text" name="searchbox" id="js-search-ingr" class="form-control typeahead" placeholder="Search for ingredient..." autocomplete="off" spellcheck="off" data-source="ingr"><button class="btn btn-default" id="js-ingr-submit">Search</button>
   </form>
 </template>
-
-<template name="product_list">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Brand Name</th>
-        <th>Manufacturer</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each products }}
-        {{> product_item}}
-      {{/each}}
-    </tbody>
-  </table>
-</template>
-
-<template name="product_item">
-  <tr>
-    <td>{{productName}}</td>
-    <td>{{brandName}}</td>
-    <td>{{manufacturer}}</td>
-  </tr>
-</template>
