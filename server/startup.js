@@ -82,9 +82,19 @@ Meteor.startup(function() {
 		});
 
 	}
+
+	if (!ProductOpts.findOne()) {
+		console.log("No product options yet. Initialize data");
+
+		Products.find().forEach( function(product) {
+			console.log("Processing " + product.productName);
+			if (!ProductOpts.category)
+			addCategory(product);
+		})
+	}
 });
 
-var addIngredient = function(product) {
+function addIngredient(product) {
 	var ingrList = product.ingredients;
 	for (var i = 0; i < ingrList.length; i ++) {
 		if (!Ingredients.findOne({"name": ingrList[i]})) {
@@ -94,4 +104,8 @@ var addIngredient = function(product) {
 		console.log(ingrList[i] + " added to Ingredients");
 		} else { console.log(ingrList[i] + " is already in Ingredients")}
 	}
+}
+
+function addCategory(product) {
+	var categoryList = product.
 }

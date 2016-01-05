@@ -14,7 +14,7 @@
 	{{#autoForm collection="Products" id="addProductForm" type="insert" }}
 		<fieldset>
 			<legend>Add a Product</legend>
-			{{> afQuickField name='category'}}
+			{{> afQuickField name='category' type="select2" multiple=true select2Options=prodOpts.category}}
 			{{> afQuickField name='subtype'}}
 			{{> afQuickField name='brandName'}}
 			{{> afQuickField name='productName'}}
