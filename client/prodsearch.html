@@ -4,15 +4,42 @@
     <li>Search Product</li>
   </ol>
   <div class="container">
-    <h2>Product Information Database</h2>
-    {{> ingr_search }}
+    <h2>Product Ingredient Database</h2>
+    {{> prod_search }}
     <hr>
-    {{> product_list}}
+    {{> product_list_ingr}}
   </div>
 </template>
 
-<template name="prod">
-  <form class="js-search-ingr-form">
-   <input type="text" name="searchbox" id="js-search-ingr" class="form-control typeahead" placeholder="Search for ingredient..." autocomplete="off" spellcheck="off" data-source="ingr"><button class="btn btn-default" id="js-ingr-submit">Search</button>
+<template name="prod_search">
+  <form class="js-search-prod-form">
+   <input type="text" name="searchbox" id="js-search-prod" class="form-control typeahead" placeholder="Search by product name..." autocomplete="off" spellcheck="off" data-source="prod"><button class="btn btn-default" id="js-prod-submit">Search</button>
   </form>
+</template>
+
+<template name="product_list_ingr">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Brand Name</th>
+        <th>Manufacturer</th>
+        <th>Ingredients</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products }}
+        {{> product_item_ingr}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name="product_item_ingr">
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{brandName}}</td>
+    <td>{{manufacturer}}</td>
+    <td>{{ingredients}}</td>
+  </tr>
 </template>

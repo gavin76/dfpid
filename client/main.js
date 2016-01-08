@@ -2,7 +2,8 @@ Meteor.subscribe("ingredients");
 Meteor.subscribe("products");
 
 // Session declaration
-Session.set("listingIngr", "");
+Session.set("listingIngr", {});
+Session.set("listingProd", {});
 
 // Routing
 
@@ -67,12 +68,22 @@ Accounts.ui.config({
 Template.product_list.helpers({
   products: function() {
     var findParam = Session.get("listingIngr");
-    console.log("List params: " + findParam);
+    return Products.find(findParam, {sort: {productName: -1}});
+  }
+});
+
+Template.product_list_ingr.helpers({
+  products: function() {
+    var findParam = Session.get("listingProd");
     return Products.find(findParam, {sort: {productName: -1}});
   }
 });
 
 Template.ingr_search.rendered = function() {
+  Meteor.typeahead.inject();
+}
+
+Template.prod_search.rendered = function() {
   Meteor.typeahead.inject();
 }
 
@@ -84,15 +95,40 @@ Template.ingr_search.helpers({
   }
 });
 
+Template.prod_search.helpers({
+  prod: function() {
+    return Products.find().fetch().map(function(it) {
+      return it.productName;
+    });
+  }
+});
+
 // Template events
 Template.ingr_search.events({
   "click #js-ingr-submit": function(ev) {
     ev.preventDefault();
     var search_text = $('#js-search-ingr').val().toLowerCase();
     console.log('Search for: ' + search_text);
-    Session.set('listingIngr', {"ingredients": search_text});
+    if (search_text === "") {
+      Session.set('listingIngr', {});
+    } else {
+      Session.set('listingIngr', {"ingredients": search_text});
+    }
     return false;
   }
 });
 
+Template.prod_search.events({
+  "click #js-prod-submit": function(ev) {
+    ev.preventDefault();
+    var search_text = $('#js-search-prod').val();
+    console.log('Search for: ' + search_text);
+    if (search_text === "") {
+      Session.set('listingProd', {});
+    } else {
+      Session.set('listingProd', {"productName": search_text});
+    }
+    return false;
+  }
+});
 
